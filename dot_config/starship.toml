@@ -1,0 +1,15 @@
+add_newline = false
+
+format = "$directory$git_branch$character"
+
+[directory]
+truncation_length = 3
+
+[git_branch]
+format = "[$symbol$branch]($style) "
+symbol = "git:"
+style = "bold purple"
+
+[character]
+success_symbol = "[>]($style)"
+error_symbol = "[x]($style)"

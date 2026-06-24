@@ -1,0 +1,23 @@
+[user]
+	name = Florian Hoppe
+	email = hoppe.florian02@gmail.com
+
+[init]
+	defaultBranch = main
+
+[pull]
+	rebase = false
+
+[push]
+	autoSetupRemote = true
+
+[core]
+	editor = nvim
+	excludesFile = ~/.gitignore_global
+
+[alias]
+	st = status
+	co = checkout
+	br = branch
+	ci = commit
+	lg = log --oneline --graph --decorate --all

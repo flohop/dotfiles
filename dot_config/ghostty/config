@@ -1,0 +1,8 @@
+font-family = JetBrainsMono Nerd Font
+font-size = 14
+
+window-padding-x = 10
+window-padding-y = 8
+macos-titlebar-style = hidden
+
+theme = dark:system,light:system

@@ -1,0 +1,14 @@
+.DS_Store
+.idea/
+
+# Remove .vscode/ here if you want to commit shared VS Code workspace settings.
+.vscode/
+
+*.swp
+.env
+.env.*
+.venv/
+__pycache__/
+node_modules/
+dist/
+build/

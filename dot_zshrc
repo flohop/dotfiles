@@ -1,0 +1,24 @@
+# Load shell configuration.
+[ -f "$HOME/.config/shell/env.zsh" ] && source "$HOME/.config/shell/env.zsh"
+[ -f "$HOME/.config/shell/aliases.zsh" ] && source "$HOME/.config/shell/aliases.zsh"
+[ -f "$HOME/.config/shell/functions.zsh" ] && source "$HOME/.config/shell/functions.zsh"
+
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi
+
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
+
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+fi
+
+if command -v fzf >/dev/null 2>&1; then
+  if [ -f "$HOME/.fzf.zsh" ]; then
+    source "$HOME/.fzf.zsh"
+  elif [ -f "/opt/homebrew/opt/fzf/shell/key-bindings.zsh" ]; then
+    source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
+  fi
+fi
