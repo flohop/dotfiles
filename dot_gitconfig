@@ -1,23 +1,10 @@
 [user]
-	name = Florian Hoppe
+	name = flohop
 	email = hoppe.florian02@gmail.com
-
-[init]
-	defaultBranch = main
-
-[pull]
-	rebase = false
-
-[push]
-	autoSetupRemote = true
-
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 [core]
-	editor = nvim
-	excludesFile = ~/.gitignore_global
-
-[alias]
-	st = status
-	co = checkout
-	br = branch
-	ci = commit
-	lg = log --oneline --graph --decorate --all
+	autocrlf = input

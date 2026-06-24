@@ -36,7 +36,7 @@ cd dotfiles
 For a remote GitHub repo, the first install usually looks like:
 
 ```sh
-git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/dotfiles
+git clone git@github.com:flohop/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ./install.sh
 ```
@@ -70,6 +70,19 @@ Edit tracked files with:
 chezmoi edit ~/.zshrc
 chezmoi apply
 ```
+
+If you edit the real file directly on a laptop, copy that change back into the repo before committing:
+
+```sh
+chezmoi re-add ~/.zshrc
+chezmoi cd
+git status
+git add .
+git commit -m "Update zsh config"
+git push
+```
+
+Repeat `chezmoi re-add` for any changed file you want to transfer to other machines.
 
 ## Updating Later
 
