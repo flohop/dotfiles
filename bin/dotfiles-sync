@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_dir="$HOME/dotfiles"
+
+# Re-add all tracked dotfiles into the chezmoi source
+chezmoi re-add --source="$repo_dir"
+
+cd "$repo_dir"
+
+if git diff --quiet && git diff --cached --quiet && [ -z "$(git ls-files --others --exclude-standard)" ]; then
+  echo "No changes to sync."
+  exit 0
+fi
+
+git add -A
+git --no-pager diff --cached --stat
+
+msg="${1:-Update dotfiles}"
+read -rp "Commit message [$msg]: " input
+msg="${input:-$msg}"
+
+git commit -m "$msg"
+git push
+
+echo "Synced."
