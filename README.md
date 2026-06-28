@@ -1,39 +1,16 @@
 # dotfiles
 
-Practical macOS developer bootstrap using chezmoi, Homebrew Bundle, and a small install script.
+macOS developer bootstrap using chezmoi, Homebrew Bundle, and a single install script.
 
-## What This Does
+## New Laptop Setup
 
-- Installs Homebrew if it is missing.
-- Installs chezmoi if it is missing.
-- Applies these dotfiles with chezmoi.
-- Installs CLI tools and apps from `Brewfile`.
-- Optionally applies a few safe macOS defaults.
-
-The setup is intentionally small, readable, and safe to run more than once.
-
-## Prerequisites
-
-- macOS
-- Command Line Tools for Xcode
-- Internet access for Homebrew and package installs
-
-Install Command Line Tools if needed:
+1. Install Xcode Command Line Tools:
 
 ```sh
 xcode-select --install
 ```
 
-## First-Time Install
-
-Clone the repo, then run:
-
-```sh
-cd dotfiles
-./install.sh
-```
-
-For a remote GitHub repo, the first install usually looks like:
+2. Clone and install:
 
 ```sh
 git clone git@github.com:flohop/dotfiles.git ~/dotfiles
@@ -41,65 +18,50 @@ cd ~/dotfiles
 ./install.sh
 ```
 
-## Safer Manual Install
+This will:
+- Install Homebrew (if missing)
+- Install chezmoi (if missing)
+- Apply all dotfiles via chezmoi (`~/.zshrc`, `~/.tmux.conf`, `~/.config/`, `~/bin/`, etc.)
+- Install all CLI tools and apps from `Brewfile`
+- Apply macOS defaults
 
-If you want to inspect each step first:
+3. Restart your terminal.
 
-```sh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew install chezmoi
-chezmoi apply --source="$HOME/dotfiles"
-brew bundle --file="$HOME/dotfiles/Brewfile"
-./scripts/configure-macos.sh
-```
+## Day-to-Day Usage
 
-## Adding Dotfiles
-
-Use chezmoi to add files from your home directory:
+### Adding a new dotfile
 
 ```sh
-chezmoi add ~/.zshrc
-chezmoi add ~/.config/nvim/init.lua
-chezmoi cd
-git status
+chezmoi add ~/.some-config
+cd ~/dotfiles && git add -A && git commit -m "Add some-config" && git push
 ```
 
-Edit tracked files with:
+### Editing a tracked dotfile
 
-```sh
-chezmoi edit ~/.zshrc
-chezmoi apply
-```
-
-If you edit the real file directly on a laptop, copy that change back into the repo before committing:
+Edit the real file, then sync back:
 
 ```sh
 chezmoi re-add ~/.zshrc
-chezmoi cd
-git status
-git add .
-git commit -m "Update zsh config"
-git push
+cd ~/dotfiles && git add -A && git commit -m "Update zshrc" && git push
 ```
 
-Repeat `chezmoi re-add` for any changed file you want to transfer to other machines.
-
-## Updating Later
-
-Pull repo changes and apply:
+### Pulling changes on another machine
 
 ```sh
 cd ~/dotfiles
 git pull
-./install.sh
+chezmoi apply --source="$HOME/dotfiles"
 ```
 
-Install or update apps from the Brewfile:
+Or re-run `./install.sh` to also update Homebrew packages.
+
+### Adding a new brew package
 
 ```sh
-brew bundle --file="$HOME/dotfiles/Brewfile"
+brew install <package>
+# Add it to Brewfile, then commit
 ```
 
 ## Secrets Warning
 
-Do not commit secrets, SSH private keys, tokens, `.env` files, API keys, credentials, or machine-specific private paths. Keep those in a password manager or a local-only secrets system.
+Do not commit SSH keys, tokens, `.env` files, API keys, or credentials. Keep those in a password manager.

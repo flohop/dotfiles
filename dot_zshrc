@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -136,3 +136,9 @@ export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
 if command -v go >/dev/null 2>&1; then
   export PATH="$PATH:$(go env GOPATH)/bin"
 fi
+
+# Source modular shell configs from ~/.config/shell/
+for _sh_cfg in "$HOME/.config/shell/"*.zsh(N); do
+  source "$_sh_cfg"
+done
+unset _sh_cfg

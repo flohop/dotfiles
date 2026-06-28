@@ -34,19 +34,15 @@ fi
 log "Applying dotfiles with chezmoi"
 chezmoi apply --source="$repo_dir"
 
-source_brewfile="$HOME/.local/share/chezmoi/Brewfile"
-if [ -f "$source_brewfile" ]; then
+if [ -f "$repo_dir/Brewfile" ]; then
   log "Installing Homebrew bundle"
-  "$brew_bin" bundle --file="$source_brewfile"
+  "$brew_bin" bundle --file="$repo_dir/Brewfile"
 else
-  log "Skipping Homebrew bundle; no Brewfile at $source_brewfile"
+  log "Skipping Homebrew bundle; no Brewfile found"
 fi
 
-macos_script="$HOME/.local/share/chezmoi/scripts/configure-macos.sh"
+macos_script="$repo_dir/scripts/configure-macos.sh"
 if [ -x "$macos_script" ]; then
-  log "Applying macOS defaults"
-  "$macos_script"
-elif [ -f "$repo_dir/scripts/configure-macos.sh" ]; then
   log "Applying macOS defaults from repo"
   "$repo_dir/scripts/configure-macos.sh"
 else
