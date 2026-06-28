@@ -1,0 +1,29 @@
+#!/bin/bash
+urls=$(grep -oE 'https?://[^[:space:]"<>]+' /tmp/tmux-pane-content | awk '!seen[$0]++')
+
+if [ -z "$urls" ]; then
+    echo "No URLs found."
+    read -rsn1
+    exit 0
+fi
+
+count=$(echo "$urls" | wc -l | tr -d ' ')
+
+if [ "$count" -eq 1 ]; then
+    open "$urls"
+    exit 0
+fi
+
+echo "$urls" | nl -ba
+echo ""
+read -p "Open URL # (Enter/Esc to close): " choice
+
+# Empty input (Enter) or EOF (Esc) closes
+if [ -z "$choice" ]; then
+    exit 0
+fi
+
+url=$(echo "$urls" | sed -n "${choice}p")
+if [ -n "$url" ]; then
+    open "$url"
+fi
