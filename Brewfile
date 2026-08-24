@@ -43,6 +43,9 @@ brew "prettier"
 brew "tesseract"
 brew "yarn"
 
+# Fonts
+cask "font-jetbrains-mono-nerd-font"
+
 # Apps
 cask "visual-studio-code"
 cask "jetbrains-toolbox"
