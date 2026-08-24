@@ -5,4 +5,4 @@ window-padding-x = 10
 window-padding-y = 8
 macos-titlebar-style = hidden
 
-theme = dark:system,light:system
+theme = dark:Apple System Colors,light:Apple System Colors Light
