@@ -3,10 +3,25 @@ font-size = 14
 
 window-padding-x = 10
 window-padding-y = 8
-macos-titlebar-style = transparent
+macos-titlebar-style = native
 
-theme = Catppuccin Mocha
-background-opacity = 0.96
-background-blur-radius = 20
+theme = GitHub Dark Default
+background-opacity = 1
+background-blur-radius = 0
 cursor-style = bar
 mouse-hide-while-typing = true
+
+# Match the previous tmux pane colors.
+background = #11111b
+foreground = #cdd6f4
+split-divider-color = #89b4fa
+# Scrollback is measured in bytes, not tmux lines.
+scrollback-limit = 50000000
+
+# Let Cmd+C reach apps that draw their own selection (Claude Code fullscreen)
+# when the terminal itself has nothing selected.
+keybind = performable:super+c=copy_to_clipboard:mixed
+
+# Machine-specific settings (e.g. working-directory) live in ./local, which is
+# not tracked in dotfiles. The leading ? makes the file optional.
+config-file = ?local

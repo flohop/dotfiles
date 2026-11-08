@@ -1,0 +1,117 @@
+// Personal cmux shortcuts. Workspace names have no number prefixes.
+{
+  "$schema": "https://raw.githubusercontent.com/manaflow-ai/cmux/main/web/data/cmux.schema.json",
+  "schemaVersion": 1,
+  "app": {
+    "appearance": "dark",
+    "workspaceInheritWorkingDirectory": false,
+    "renameSelectsExistingName": true,
+    "reorderOnNotification": false
+  },
+  "sidebar": {
+    "showAgentActivity": true,
+    "showNotificationMessage": true,
+    "showProgress": true,
+    "openPullRequestLinksInCmuxBrowser": false,
+    "openPortLinksInCmuxBrowser": false
+  },
+  "sidebarAppearance": {
+    "tintColor": "#1e1e2e",
+    "tintOpacity": 1
+  },
+  "workspaceColors": {
+    "selectionColor": "#8caa8f",
+    "notificationBadgeColor": "#f38ba8"
+  },
+  "notifications": {
+    "unreadPaneRing": true,
+    "paneFlash": true,
+    "dockBadge": true
+  },
+  "automation": {
+    "claudeCodeIntegration": true
+  },
+  "terminal": {
+    "autoResumeAgentSessions": true
+  },
+  "shortcuts": {
+    "bindings": {
+      "newTab": [
+        "ctrl+a",
+        "c"
+      ],
+      "splitRight": [
+        "ctrl+a",
+        "shift+\\"
+      ],
+      "splitDown": [
+        "ctrl+a",
+        "-"
+      ],
+      "renameWorkspace": [
+        "ctrl+a",
+        ","
+      ],
+      "nextSidebarTab": [
+        "ctrl+a",
+        "n"
+      ],
+      "prevSidebarTab": [
+        "ctrl+a",
+        "p"
+      ],
+      "moveWorkspaceUp": "cmd+opt+↑",
+      "moveWorkspaceDown": "cmd+opt+↓",
+      "toggleSplitZoom": [
+        "ctrl+a",
+        "z"
+      ],
+      "focusNextPane": [
+        "ctrl+a",
+        "o"
+      ],
+      "focusLeft": [
+        "ctrl+a",
+        "h"
+      ],
+      "focusDown": [
+        "ctrl+a",
+        "j"
+      ],
+      "focusUp": [
+        "ctrl+a",
+        "k"
+      ],
+      "focusRight": [
+        "ctrl+a",
+        "l"
+      ],
+      "goToWorkspace": [
+        "ctrl+a",
+        "w"
+      ],
+      "toggleTerminalCopyMode": [
+        "ctrl+a",
+        "["
+      ],
+      "openBrowser": [
+        "ctrl+a",
+        "u"
+      ],
+      "showNotifications": [
+        "ctrl+a",
+        "i"
+      ],
+      "reloadConfiguration": [
+        "ctrl+a",
+        "r"
+      ],
+      "selectWorkspaceByNumber": "cmd+1",
+      "selectSurfaceByNumber": "cmd+opt+1"
+    }
+  },
+  "browser": {
+    "openTerminalLinksInCmuxBrowser": false,
+    "interceptTerminalOpenCommandInCmuxBrowser": false
+  }
+}
