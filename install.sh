@@ -73,6 +73,20 @@ else
   log "Skipping Homebrew bundle"
 fi
 
+# CLI tools installed with uv rather than Homebrew. Already-installed tools are left as they are.
+uv_tools=(
+  claude-swap # cswap: switch Claude Code between accounts
+)
+
+if command -v uv >/dev/null 2>&1; then
+  log "Installing uv tools"
+  for tool in "${uv_tools[@]}"; do
+    uv tool install "$tool" || echo "Could not install $tool; continuing" >&2
+  done
+else
+  log "Skipping uv tools; uv not found (it comes from the Brewfile)"
+fi
+
 macos_script="$repo_dir/scripts/configure-macos.sh"
 if [ -x "$macos_script" ]; then
   log "Applying macOS defaults"
