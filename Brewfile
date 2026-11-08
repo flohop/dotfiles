@@ -1,4 +1,6 @@
 tap "homebrew/bundle"
+tap "hashicorp/tap"
+tap "daniyalmaster693/casks"
 
 # Core developer tools
 brew "git"
@@ -22,6 +24,7 @@ brew "htop"
 brew "node"
 brew "python"
 brew "uv"
+brew "direnv"
 
 # Useful developer tools inferred from this Mac
 brew "act"
@@ -42,6 +45,12 @@ brew "pre-commit"
 brew "prettier"
 brew "tesseract"
 brew "yarn"
+brew "just"
+brew "pnpm"
+brew "ffmpeg"
+brew "poppler"
+brew "libpq" # Postgres client library (keg-only, so psql is not on PATH)
+brew "hashicorp/tap/terraform"
 
 # Fonts
 cask "font-jetbrains-mono-nerd-font"
@@ -74,3 +83,7 @@ cask "stats"
 cask "sublime-text"
 cask "utm"
 cask "vlc"
+cask "caffeine"
+cask "gitify"
+cask "radix"
+cask "daniyalmaster693/casks/menuscores"

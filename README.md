@@ -132,6 +132,60 @@ uv tool install claude-swap
 
 Only the tool is installed. Its accounts and settings stay on each machine and are not tracked here.
 
+## Claude Code and Codex preferences
+
+These settings files are not tracked. Both apps rewrite them, and the work copies hold work-only rules. Merge the personal preferences in by hand.
+
+### Claude Code
+
+This sets the effort level per model, the dark theme, the latest update channel, and a status line that shows your usage limits.
+
+1. Install the status line script. It comes with the tmux-agent-indicator plugin. Skip this if `~/.tmux/plugins/tmux-agent-indicator` already exists.
+
+```sh
+git clone https://github.com/accessd/tmux-agent-indicator ~/.tmux/plugins/tmux-agent-indicator
+```
+
+2. Merge the settings into `~/.claude/settings.json`. Existing settings are kept, and the old file is saved as `settings.json.bak`.
+
+```sh
+mkdir -p ~/.claude && cd ~/.claude
+cp settings.json settings.json.bak 2>/dev/null || echo '{}' > settings.json
+jq -s '.[0] * .[1]' settings.json - > settings.json.new <<'EOF'
+{
+  "theme": "dark",
+  "autoUpdatesChannel": "latest",
+  "modelSettings": {
+    "claude-sonnet-5": { "effortLevel": "high" },
+    "claude-opus-5-5": { "effortLevel": "xhigh" },
+    "claude-fable-5-1": { "effortLevel": "xhigh" }
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.tmux/plugins/tmux-agent-indicator/scripts/agent-limits.py claude-statusline"
+  }
+}
+EOF
+mv settings.json.new settings.json
+```
+
+### Codex
+
+Codex itself comes from the Brewfile. Add these to `~/.codex/config.toml`. The first four lines must sit at the very top, above any `[section]`. If a section already exists, put its line inside the existing one instead of adding a second copy.
+
+```toml
+model = "gpt-6.1-sol"
+model_reasoning_effort = "high"
+service_tier = "default"
+approvals_reviewer = "auto_review"
+
+[sandbox_workspace_write]
+network_access = true
+
+[tui]
+fullscreen_transcript = false
+```
+
 ## Day-to-Day Usage
 
 ### Adding a new dotfile
